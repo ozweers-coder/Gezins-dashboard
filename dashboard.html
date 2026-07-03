@@ -1,9 +1,19 @@
 <!DOCTYPE html>
-<html lang="nl"><head><meta charset="UTF-8"><link rel="stylesheet" href="css/style.css"></head>
+<html lang="nl"><head><meta charset="UTF-8"><link rel="stylesheet" href="css/style.css">
+<style>
+    .calendar-container { overflow: hidden; padding-top: 56.25%; position: relative; }
+    .calendar-container iframe { border: 0; height: 100%; left: 0; position: absolute; top: 0; width: 100%; }
+</style>
+</head>
 <body>
     <div class="container">
         <h1>🤖 Dashboard</h1>
-        <div class="card"><h2>Welkom!</h2><p>Dit is de centrale plek voor ons gezin.</p></div>
+        <div class="card">
+            <h2>Gezinsagenda</h2>
+            <div class="calendar-container">
+                <iframe src="https://calendar.google.com/calendar/embed?src=sdgr984g8mq6nupu12v075stk4%40group.calendar.google.com&ctz=Europe%2FAmsterdam"></iframe>
+            </div>
+        </div>
     </div>
     <div class="nav-bar">
         <a href="dashboard.html" class="active"><span class="icon">🏠</span>Home</a>

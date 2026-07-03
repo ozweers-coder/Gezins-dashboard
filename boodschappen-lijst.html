@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="nl"><head><meta charset="UTF-8"><link rel="stylesheet" href="css/style.css"></head>
+<body>
+    <div class="container">
+        <h1>🛒 Boodschappen</h1>
+        <h2 style="color: #E67E22;">Groothandel (morgen)</h2>
+        <ul id="shopping-list-groothandel"></ul>
+        <hr>
+        <h2>Overig</h2>
+        <ul id="shopping-list-overig"></ul>
+        
+        <div class="card add-manual">
+            <input type="text" id="manualInput" placeholder="Iets toevoegen..." style="width:100%; padding:15px; font-size:1.2rem; box-sizing:border-box;">
+            <button class="btn" style="margin-top:10px;" onclick="addManual()">Toevoegen</button>
+        </div>
+        
+        <button class="btn" style="background:#e67e22; font-size:1.5rem; padding:20px;" onclick="clearList()">Verwerk/Leeg lijst</button>
+    </div>
+    <div class="nav-bar">
+        <a href="dashboard.html"><span class="icon">🏠</span>Home</a>
+        <a href="boodschappen-lijst.html" class="active"><span class="icon">🛒</span>Lijst</a>
+        <a href="recepten-overzicht.html"><span class="icon">🍳</span>Recepten</a>
+    </div>
+    <script>
+        let groothandel = ["30 hamburgers", "Broodjes hamburger (niet afbakken)", "Augurk", "Cheddar", "Gebakken uitjes", "6 kilo kip", "12 blikjes cola", "12 blikjes cola zero", "1x Ice tea met prik", "1x Ice tea zonder prik", "Surinaamse broodjes"];
+        let list = JSON.parse(localStorage.getItem('boodschappen') || '[]');
+        
+        let ul1 = document.getElementById('shopping-list-groothandel');
+        let ul2 = document.getElementById('shopping-list-overig');
+
+        function loadList() {
+            ul1.innerHTML = '';
+            ul2.innerHTML = '';
+            groothandel.forEach((item, index) => {
+                ul1.innerHTML += '<li><input type="checkbox" style="transform:scale(2); margin-right:20px;" data-category="groothandel" data-val="'+item+'"> '+item+'</li>';
+            });
+            list.forEach((item, index) => {
+                ul2.innerHTML += '<li><input type="checkbox" style="transform:scale(2); margin-right:20px;" data-category="overig" data-val="'+item+'"> '+item+'</li>';
+            });
+        }
+        loadList();
+
+        function addManual() {
+            let input = document.getElementById('manualInput');
+            if(input.value) {
+                list.push(input.value);
+                localStorage.setItem('boodschappen', JSON.stringify(list));
+                input.value = '';
+                loadList();
+            }
+        }
+
+        function clearList() {
+            let boxes = document.querySelectorAll('input:checked');
+            let toRemove = [];
+            boxes.forEach(cb => toRemove.push(cb.getAttribute('data-val')));
+            
+            // Verwijder uit groothandel
+            groothandel = groothandel.filter(i => !toRemove.includes(i));
+            // Verwijder uit overig
+            list = list.filter(i => !toRemove.includes(i));
+            localStorage.setItem('boodschappen', JSON.stringify(list));
+            location.reload();
+        }
+    </script>
+</body>
+</html>

@@ -1,51 +1,29 @@
 <!DOCTYPE html>
 <html lang="nl"><head><meta charset="UTF-8"><link rel="stylesheet" href="css/style.css">
 <style>
-    .accordion { cursor: pointer; padding: 20px; width: 100%; border: none; text-align: left; font-size: 1.4rem; background-color: #f1f1f1; border-radius: 12px; margin-bottom: 10px; }
-    .panel { padding: 15px; display: none; background: white; border: 1px solid #ddd; border-radius: 8px; }
-    .recept-img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 10px; }
+    .card { cursor: pointer; border: 1px solid #ddd; padding: 0; }
+    .card img { border-radius: 15px 15px 0 0; }
+    .panel { display: none; padding: 20px; background: #fff; }
+    .btn { background: #007A6D; color: white; border: none; padding: 20px; width: 100%; font-size: 1.2rem; font-weight: bold; border-radius: 0 0 15px 15px; }
 </style>
 </head>
 <body><div class="container">
-    <h1>🍳 Onze Recepten</h1>
+    <h1>🍳 Keukenbeheer</h1>
     
-    <div class="card">
-        <h2 onclick="toggle(this.nextElementSibling)">Braziliaanse stijl pita kip</h2>
+    <div class="card" onclick="toggle(this.querySelector('.panel'))">
+        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&q=80">
+        <div style="padding: 15px;">
+            <h2>Braziliaanse stijl pita kip</h2>
+            <p>Klaar in 20 min • 2,2 personen</p>
+        </div>
         <div class="panel">
-            <img class="recept-img" src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&q=80" alt="Braziliaanse pita kip">
             <h3>Ingrediënten</h3>
             <ul id="ing1">
-                <li>330g shoarmavlees</li><li>2,2 durum wraps</li><li>110g ijsbergsla</li><li>1,1 tomaat</li>
-                <li>0,55 komkommer</li><li>1,1 rode ui</li><li>Knoflooksaus</li><li>0,25 gele ui</li>
-                <li>0,25 rode paprika</li><li>80g witte kool</li><li>4,5g koriander</li><li>27g botersla</li><li>22 ml kokosmelk</li>
+                <li>330g shoarmavlees</li><li>2,2 durum wraps</li><li>110g ijsbergsla</li><li>1,1 tomaat</li><li>0,55 komkommer</li>
             </ul>
-            <button class="btn" onclick="addRecept('ing1')">Voeg toe aan boodschappen</button>
-        </div>
-    </div>
-    
-    <div class="card">
-        <h2 onclick="toggle(this.nextElementSibling)">Sticky Asian Pulled Chicken</h2>
-        <div class="panel">
-            <img class="recept-img" src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=500&q=80" alt="Pulled Chicken">
-            <h3>Ingrediënten</h3>
-            <ul id="ing2">
-                <li>3,5 kg kippendijfilet</li><li>550 ml sojasaus</li><li>275g honing</li><li>55g gember</li><li>55g knoflook</li>
-                <li>110 ml rijstazijn</li><li>27 ml sesamolie</li><li>19 brioche broodjes</li><li>1,1 kg Aziatische koolsalade</li>
-            </ul>
-            <button class="btn" onclick="addRecept('ing2')">Voeg toe aan boodschappen</button>
-        </div>
-    </div>
-    
-    <div class="card">
-        <h2 onclick="toggle(this.nextElementSibling)">Kipsalon</h2>
-        <div class="panel">
-            <img class="recept-img" src="https://images.unsplash.com/photo-1596560344102-960135d04588?w=500&q=80" alt="Kipsalon">
-            <h3>Ingrediënten</h3>
-            <ul id="ing3">
-                <li>440g frites</li><li>330g kippendijreepjes</li><li>110g jonge kaas (geraspt)</li>
-                <li>0,5 krop ijsbergsla</li><li>1,1 tomaat</li><li>0,5 komkommer</li><li>Knoflooksaus</li>
-            </ul>
-            <button class="btn" onclick="addRecept('ing3')">Voeg toe aan boodschappen</button>
+            <h3>Bereiding</h3>
+            <p>Bak vlees goudbruin, snijd groenten, vul de wraps.</p>
+            <button class="btn" onclick="event.stopPropagation(); addRecept('ing1')">🛒 Toevoegen aan lijst</button>
         </div>
     </div>
 
@@ -56,13 +34,8 @@
             let list = JSON.parse(localStorage.getItem('boodschappen') || '[]');
             items.forEach(i => { if(!list.includes(i)) list.push(i); });
             localStorage.setItem('boodschappen', JSON.stringify(list));
-            alert("Toegevoegd aan je lijst!");
+            alert("Toegevoegd!");
         }
     </script>
-</div>
-<div class="nav-bar">
-    <a href="dashboard.html"><span class="icon">🏠</span>Home</a>
-    <a href="boodschappen-lijst.html"><span class="icon">🛒</span>Lijst</a>
-    <a href="recepten-overzicht.html" class="active"><span class="icon">🍳</span>Recepten</a>
 </div>
 </body></html>

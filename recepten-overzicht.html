@@ -1,30 +1,56 @@
 <!DOCTYPE html>
-<html lang="nl"><head><meta charset="UTF-8"><link rel="stylesheet" href="css/style.css">
-<style>
-    .card { cursor: pointer; border: 1px solid #ddd; padding: 0; }
-    .card img { border-radius: 15px 15px 0 0; }
-    .panel { display: none; padding: 20px; background: #fff; }
-    .btn { background: #007A6D; color: white; border: none; padding: 20px; width: 100%; font-size: 1.2rem; font-weight: bold; border-radius: 0 0 15px 15px; }
-</style>
-</head>
-<body><div class="container">
-    <h1>🍳 Keukenbeheer</h1>
-    
-    <div class="card" onclick="toggle(this.querySelector('.panel'))">
-        <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&q=80">
-        <div style="padding: 15px;">
-            <h2>Braziliaanse stijl pita kip</h2>
-            <p>Klaar in 20 min • 2,2 personen</p>
+<html lang="nl"><head><meta charset="UTF-8"><link rel="stylesheet" href="css/style.css"></head>
+<body>
+    <div class="container">
+        <h1>🍳 Recepten</h1>
+
+        <!-- Braziliaanse Kip -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1603360946369-dc9bb6258143?w=500&q=80" onclick="toggle(this.nextElementSibling)">
+            <h2 onclick="toggle(this.nextElementSibling)">Braziliaanse stijl pita kip</h2>
+            <div class="panel">
+                <h3>Ingrediënten</h3>
+                <ul id="ing1">
+                    <li>330g shoarmavlees</li><li>2,2 durum wraps</li><li>110g ijsbergsla</li>
+                    <li>1,1 tomaat</li><li>0,55 komkommer</li><li>1,1 rode ui</li>
+                </ul>
+                <h3>Bereiding</h3>
+                <p>Bak vlees goudbruin, snijd groenten, vul de wraps.</p>
+                <button class="btn" onclick="addRecept('ing1')">Voeg toe aan boodschappen</button>
+            </div>
         </div>
-        <div class="panel">
-            <h3>Ingrediënten</h3>
-            <ul id="ing1">
-                <li>330g shoarmavlees</li><li>2,2 durum wraps</li><li>110g ijsbergsla</li><li>1,1 tomaat</li><li>0,55 komkommer</li>
-            </ul>
-            <h3>Bereiding</h3>
-            <p>Bak vlees goudbruin, snijd groenten, vul de wraps.</p>
-            <button class="btn" onclick="event.stopPropagation(); addRecept('ing1')">🛒 Toevoegen aan lijst</button>
+
+        <!-- Sticky Asian Pulled Chicken -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=500&q=80" onclick="toggle(this.nextElementSibling)">
+            <h2 onclick="toggle(this.nextElementSibling)">Sticky Asian Pulled Chicken</h2>
+            <div class="panel">
+                <ul id="ing2">
+                    <li>3,5 kg kippendijfilet</li><li>550 ml sojasaus</li><li>275g honing</li>
+                    <li>55g gember</li><li>19 brioche broodjes</li>
+                </ul>
+                <button class="btn" onclick="addRecept('ing2')">Voeg toe aan boodschappen</button>
+            </div>
         </div>
+
+        <!-- Kipsalon -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1596560344102-960135d04588?w=500&q=80" onclick="toggle(this.nextElementSibling)">
+            <h2 onclick="toggle(this.nextElementSibling)">Kipsalon</h2>
+            <div class="panel">
+                <ul id="ing3">
+                    <li>440g frites</li><li>330g kippendijreepjes</li><li>110g jonge kaas</li>
+                    <li>0,5 krop ijsbergsla</li><li>1,1 tomaat</li>
+                </ul>
+                <button class="btn" onclick="addRecept('ing3')">Voeg toe aan boodschappen</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="nav-bar">
+        <a href="dashboard.html"><span class="icon">🏠</span>Home</a>
+        <a href="boodschappen-lijst.html"><span class="icon">🛒</span>Lijst</a>
+        <a href="recepten-overzicht.html" class="active"><span class="icon">🍳</span>Recepten</a>
     </div>
 
     <script>
@@ -37,5 +63,5 @@
             alert("Toegevoegd!");
         }
     </script>
-</div>
-</body></html>
+</body>
+</html>

@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="nl"><head><meta charset="UTF-8"><link rel="stylesheet" href="css/style.css"></head>
 <body><div class="container">
-    <h1>🍳 Recepten</h1>
-    <div id="recepten-lijst">
-        <!-- Recepten worden hier geladen -->
-    </div>
+    <h1>🍳 Onze Recepten</h1>
+    <div class="card"><h2 onclick="toggle(this.nextElementSibling)">Braziliaanse stijl pita kip</h2><div class="panel"><ul id="ing1"><li>330g shoarmavlees</li><li>2,2 durum wraps</li><li>110g ijsbergsla</li><li>1,1 tomaat</li><li>0,55 komkommer</li><li>1,1 rode ui</li></ul><button class="btn" onclick="addRecept('ing1')">Toevoegen</button></div></div>
+    <div class="card"><h2 onclick="toggle(this.nextElementSibling)">Sticky Asian Pulled Chicken</h2><div class="panel"><ul id="ing2"><li>3,5 kg kippendijfilet</li><li>550 ml sojasaus</li><li>275g honing</li><li>55g gember</li><li>19 brioche broodjes</li></ul><button class="btn" onclick="addRecept('ing2')">Toevoegen</button></div></div>
+    <div class="card"><h2 onclick="toggle(this.nextElementSibling)">Kipsalon</h2><div class="panel"><ul id="ing3"><li>440g frites</li><li>330g kippendijreepjes</li><li>110g jonge kaas</li><li>1 krop ijsbergsla</li></ul><button class="btn" onclick="addRecept('ing3')">Toevoegen</button></div></div>
+    <div class="card"><h2 onclick="toggle(this.nextElementSibling)">Pulled Chicken Sate</h2><div class="panel"><ul id="ing4"><li>220g kippendijfilet</li><li>55ml satesaus</li><li>0,5 el ketjap</li><li>2 wraps</li></ul><button class="btn" onclick="addRecept('ing4')">Toevoegen</button></div></div>
+    <div class="card"><h2 onclick="toggle(this.nextElementSibling)">Spinaziequiche</h2><div class="panel"><ul id="ing5"><li>450g spinazie</li><li>4 eieren</li><li>100g spekjes</li><li>150g kaas</li></ul><button class="btn" onclick="addRecept('ing5')">Toevoegen</button></div></div>
+    <div class="card"><h2 onclick="toggle(this.nextElementSibling)">Klassieke Poffertjes</h2><div class="panel"><ul id="ing6"><li>250g mix</li><li>250ml melk</li><li>1 ei</li></ul><button class="btn" onclick="addRecept('ing6')">Toevoegen</button></div></div>
+    <div class="card"><h2 onclick="toggle(this.nextElementSibling)">Classic Smashburger</h2><div class="panel"><ul id="ing7"><li>600g gehakt</li><li>4 brioche broodjes</li><li>4 plakken cheddar</li></ul><button class="btn" onclick="addRecept('ing7')">Toevoegen</button></div></div>
+    <div class="card"><h2 onclick="toggle(this.nextElementSibling)">Snelle Rigatoni</h2><div class="panel"><ul id="ing8"><li>400g rigatoni</li><li>400g kipgehakt</li><li>100g pesto</li><li>200ml kookroom</li></ul><button class="btn" onclick="addRecept('ing8')">Toevoegen</button></div></div>
+    <script>
+        function toggle(el) { el.style.display = (el.style.display === 'block') ? 'none' : 'block'; }
+        function addRecept(id) {
+            let items = Array.from(document.getElementById(id).querySelectorAll('li')).map(li => li.innerText);
+            let list = JSON.parse(localStorage.getItem('boodschappen') || '[]');
+            items.forEach(i => { if(!list.includes(i)) list.push(i); });
+            localStorage.setItem('boodschappen', JSON.stringify(list));
+            alert("Toegevoegd!");
+        }
+    </script>
 </div>
 <div class="nav-bar">
     <a href="dashboard.html"><span class="icon">🏠</span>Home</a>
     <a href="boodschappen-lijst.html"><span class="icon">🛒</span>Lijst</a>
     <a href="recepten-overzicht.html" class="active"><span class="icon">🍳</span>Recepten</a>
 </div>
-<script>
-    function toggle(el) { el.style.display = (el.style.display === 'block') ? 'none' : 'block'; }
-    function addRecept(id) {
-        let items = Array.from(document.getElementById(id).querySelectorAll('li')).map(li => li.innerText);
-        let list = JSON.parse(localStorage.getItem('boodschappen') || '[]');
-        items.forEach(i => { if(!list.includes(i)) list.push(i); });
-        localStorage.setItem('boodschappen', JSON.stringify(list));
-        alert("Toegevoegd!");
-    }
-</script>
 </body></html>
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1525351484163-7529414344d8?w=500&q=80" onclick="toggle(this.nextElementSibling)">
-        <h2 onclick="toggle(this.nextElementSibling)">Spinaziequiche met spekjes</h2>
-        <div class="panel">
-            <ul id="ing7">
-                <li>450g diepvriesspinazie</li><li>4 eieren</li><li>100g spekjes</li><li>150g geraspte kaas</li><li>1 rol bladerdeeg</li>
-            </ul>
-            <h3>Bereiding</h3>
-            <p>Bekleed de vorm met bladerdeeg. Meng spinazie, eieren en kaas. Bak spekjes en voeg toe. 35 min in de oven op 200 graden.</p>
-            <button class="btn" onclick="addRecept('ing7')">Voeg toe aan boodschappen</button>
-        </div>
-    </div>
